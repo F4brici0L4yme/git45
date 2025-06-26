@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de Persona</title>
+</head>
+<body>
+    <h1>Detalle de Persona</h1>
+
+    <ul>
+        <li><strong>ID:</strong> {{ persona.id }}</li>
+        <li><strong>Nombres:</strong> {{ persona.nombres }}</li>
+        <li><strong>Apellidos:</strong> {{ persona.apellidos }}</li>
+        <li><strong>Edad:</strong> {{ persona.edad }}</li>
+        <li><strong>Donador:</strong> {{ persona.donador|yesno:"Sí,No" }}</li>
+    </ul>
+
+    <div style="margin-top:20px;">
+        {% if anterior %}
+            <a href="{% url 'persona_detalle' anterior %}">
+                <button>&larr; Anterior</button>
+            </a>
+        {% endif %}
+
+        {% if siguiente %}
+            <a href="{% url 'persona_detalle' siguiente %}">
+                <button>Siguiente &rarr;</button>
+            </a>
+        {% endif %}
+    </div>
+
+    <br>
+    <a href="{% url 'persona_formulario' %}">Volver al formulario</a>
+</body>
+</html>
