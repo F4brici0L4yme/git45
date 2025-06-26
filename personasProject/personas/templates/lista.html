@@ -13,6 +13,7 @@
         <li>
             {{ persona.nombres }} {{ persona.apellidos }} ({{ persona.edad }} años)
             <a href="{% url 'persona_eliminar' persona.id %}">🗑️ Eliminar</a>
+            <a href="{{ persona.get_absolute_url }}">Ver detalles</a>
         </li>
         {% empty %}
         <li>No hay personas registradas.</li>

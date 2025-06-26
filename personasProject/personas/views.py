@@ -11,10 +11,9 @@ def persona_formulario(request):
         form = PersonaForm(request.POST)
         if form.is_valid():
             persona = form.save()
-            return redirect('persona_detalle', k=persona.pk)
+            return redirect(persona.get_absolute_url())
     else:
         form = PersonaForm()
-    
     return render(request, 'formulario.html', {'form': form})
 
 from django.shortcuts import render, get_object_or_404
