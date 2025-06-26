@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmar Eliminación</title>
+</head>
+<body>
+    <h1>¿Está seguro de querer borrar este registro?</h1>
+
+    <p><strong>{{ persona.nombres }} {{ persona.apellidos }}</strong> ({{ persona.edad }} años)</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="confirmar">✅ Confirmar</button>
+        <button type="submit" name="cancelar">❌ Cancelar</button>
+    </form>
+</body>
+</html>
