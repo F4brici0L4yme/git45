@@ -1,7 +1,13 @@
 from django import forms
+from .models import Persona
 
-class PersonaForm(forms.Form):
-    nombres = forms.CharField(label='Nombres', max_length=100)
-    apellidos = forms.CharField(label='Apellidos', max_length=100)
-    edad = forms.IntegerField(label='Edad')
-    donador = forms.BooleanField(label='¿Es donador?', required=False)
+class PersonaForm(forms.ModelForm):
+    class Meta:
+        model = Persona
+        fields = ['nombres', 'apellidos', 'edad', 'donador']
+        widgets = {
+            'nombres': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese nombres'}),
+            'apellidos': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese apellidos'}),
+            'edad': forms.NumberInput(attrs={'class': 'form-control', 'min': 17}),
+            'donador': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
