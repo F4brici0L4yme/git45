@@ -1,16 +1,16 @@
 from django import forms
 from .models import Persona
+from django.shortcuts import render
 
-class PersonaForm(forms.ModelForm):
-    class Meta:
-        model = Persona
-        fields = ['nombres', 'apellidos', 'edad', 'donador']
-        widgets = {
-            'nombres': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese nombres'}),
-            'apellidos': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese apellidos'}),
-            'edad': forms.NumberInput(attrs={'class': 'form-control', 'min': 0}),
-            'donador': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
+class PersonaForm(forms.Form):
+    nombres = forms.CharField(
+        label='Nombres',
+        max_length=100,
+        initial='Este es'
+    )
+    apellidos = forms.CharField(label='Apellidos', max_length=100, initial='un ejemplo de initialValue')
+    edad = forms.IntegerField(label='Edad')
+    donador = forms.BooleanField(label='¿Es donador?', required=False)
 
     def clean_edad(self):
         edad = self.cleaned_data.get('edad')
