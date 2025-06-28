@@ -9,8 +9,12 @@ class PersonaListView(ListView):
     model = Persona
     template_name = 'lista.html'
     context_object_name = 'personas'
-
     queryset = Persona.objects.all().order_by('id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['mayores_25'] = Persona.objects.filter(edad__gt=25).order_by('id')
+        return context
 
 
 def persona_formulario(request):
