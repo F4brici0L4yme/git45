@@ -1,0 +1,8 @@
+body {
+    background-color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+p, a, li, h2, h1{
+    color: #ffffff;
+}

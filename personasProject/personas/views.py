@@ -8,6 +8,8 @@ from django.views.generic import UpdateView
 from django.urls import reverse_lazy
 from .models import Persona
 from .forms import PersonaForm
+from django.http import JsonResponse
+
 
 class PersonaListView(ListView):
     model = Persona
@@ -71,3 +73,8 @@ class PersonaUpdateView(UpdateView):
     form_class = PersonaForm
     template_name = 'formulario.html'
     success_url = reverse_lazy('persona_lista')
+
+def persona_json(request):
+    personas = Persona.objects.all().values('id', 'nombres', 'apellidos', 'edad', 'donador')
+    personas_list = list(personas)
+    return JsonResponse(personas_list, safe=False)
