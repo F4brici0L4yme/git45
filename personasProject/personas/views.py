@@ -2,9 +2,16 @@ from django.shortcuts import render
 from .forms import PersonaForm
 from django.shortcuts import redirect
 
-def persona_lista(request):
-    personas = Persona.objects.all().order_by('id')
-    return render(request, 'lista.html', {'personas': personas})
+from django.views.generic import ListView
+from .models import Persona
+
+class PersonaListView(ListView):
+    model = Persona
+    template_name = 'lista.html'
+    context_object_name = 'personas'
+
+    queryset = Persona.objects.all().order_by('id')
+
 
 def persona_formulario(request):
     if request.method == 'POST':
