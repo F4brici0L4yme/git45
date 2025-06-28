@@ -4,6 +4,10 @@ from django.shortcuts import redirect
 
 from django.views.generic import ListView
 from .models import Persona
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .models import Persona
+from .forms import PersonaForm
 
 class PersonaListView(ListView):
     model = Persona
@@ -61,3 +65,9 @@ def persona_confirmar_eliminar(request, pk):
             return redirect('persona_lista')
     
     return render(request, 'confirmar_eliminar.html', {'persona': persona})
+
+class PersonaUpdateView(UpdateView):
+    model = Persona
+    form_class = PersonaForm
+    template_name = 'formulario.html'
+    success_url = reverse_lazy('persona_lista')

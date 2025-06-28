@@ -12,8 +12,8 @@
         {% for persona in personas %}
         <li>
             {{ persona.nombres }} {{ persona.apellidos }} ({{ persona.edad }} años)
+            <a href="{% url 'persona_editar' persona.id %}">✏️ Editar</a>
             <a href="{% url 'persona_eliminar' persona.id %}">🗑️ Eliminar</a>
-            <!-- Editar se implementará en la siguiente parte -->
         </li>
         {% empty %}
         <li>No hay personas registradas.</li>
